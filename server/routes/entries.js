@@ -17,7 +17,7 @@ router.patch('/:date', async (req, res) => {
         const entry = await Entry.findOneAndUpdate(
             { date: req.params.date },
             { [field]: value },
-            { new: true, upsert: true, runValidators: true }
+            { returnDocument: 'after', upsert: true, runValidators: true }
         );
         res.json(entry);
     } catch (err) {
@@ -31,7 +31,7 @@ router.patch('/:date/note', async (req, res) => {
         const entry = await Entry.findOneAndUpdate(
             { date: req.params.date },
             { note },
-            { new: true, upsert: true, runValidators: true }
+            { returnDocument: 'after', upsert: true, runValidators: true }
         );
         res.json(entry);
     } catch (err) {
