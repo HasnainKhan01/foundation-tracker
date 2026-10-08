@@ -1,0 +1,1 @@
+export default function Snapshot() { return <h1>Snapshot page</h1>; }

@@ -1,0 +1,1 @@
+export default function Intro() { return <h1>Intro page</h1>; }
