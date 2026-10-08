@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './Log.css';
 
 const today = new Date().toISOString().split('T')[0];
 
@@ -35,33 +36,63 @@ function Log() {
         <div>
             <h1>{today}</h1>
 
-            <div>
-            <span>Gym</span>
-            <button onClick={() => updateField('gym', 'floor', setGym)}>Floor</button>
-            <button onClick={() => updateField('gym', 'ceiling', setGym)}>Ceiling</button>
+            <div className="row">
+            <span className="label">Gym</span>
+            <button
+                className={gym === 'floor' ? 'active-floor' : ''}
+                onClick={() => updateField('gym', 'floor', setGym)}
+            >
+                Floor
+            </button>
+            <button
+                className={gym === 'ceiling' ? 'active-ceiling' : ''}
+                onClick={() => updateField('gym', 'ceiling', setGym)}
+            >
+                Ceiling
+            </button>
             <button onClick={() => updateField('gym', 'none', setGym)}>Clear</button>
-            <span>{gym}</span>
             </div>
 
-            <div>
-            <span>Job Applications</span>
-            <button onClick={() => updateField('jobApplications', 'floor', setJobApplications)}>Floor</button>
-            <button onClick={() => updateField('jobApplications', 'ceiling', setJobApplications)}>Ceiling</button>
+            <div className="row">
+            <span className="label">Job Applications</span>
+            <button
+                className={jobApplications === 'floor' ? 'active-floor' : ''}
+                onClick={() => updateField('jobApplications', 'floor', setJobApplications)}
+            >
+                Floor
+            </button>
+            <button
+                className={jobApplications === 'ceiling' ? 'active-ceiling' : ''}
+                onClick={() => updateField('jobApplications', 'ceiling', setJobApplications)}
+            >
+                Ceiling
+            </button>
             <button onClick={() => updateField('jobApplications', 'none', setJobApplications)}>Clear</button>
-            <span>{jobApplications}</span>
             </div>
 
-            <div>
-            <span>Skincare</span>
-            <button onClick={() => updateField('skincare', 'floor', setSkincare)}>Floor</button>
-            <button onClick={() => updateField('skincare', 'ceiling', setSkincare)}>Ceiling</button>
+            <div className="row">
+            <span className="label">Skincare</span>
+            <button
+                className={skincare === 'floor' ? 'active-floor' : ''}
+                onClick={() => updateField('skincare', 'floor', setSkincare)}
+            >
+                Floor
+            </button>
+            <button
+                className={skincare === 'ceiling' ? 'active-ceiling' : ''}
+                onClick={() => updateField('skincare', 'ceiling', setSkincare)}
+            >
+                Ceiling
+            </button>
             <button onClick={() => updateField('skincare', 'none', setSkincare)}>Clear</button>
-            <span>{skincare}</span>
             </div>
 
-            <div>
-            <span>Nightly Anchor</span>
-            <button onClick={() => updateField('nightlyAnchor', !nightlyAnchor, setNightlyAnchor)}>
+            <div className="row">
+            <span className="label">Nightly Anchor</span>
+            <button
+                className={nightlyAnchor ? 'active-ceiling' : ''}
+                onClick={() => updateField('nightlyAnchor', !nightlyAnchor, setNightlyAnchor)}
+            >
                 {nightlyAnchor ? 'Done' : 'Mark Done'}
             </button>
             </div>

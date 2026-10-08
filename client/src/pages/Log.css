@@ -1,0 +1,27 @@
+.row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.label {
+    width: 140px;
+}
+
+button {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+}
+
+.active-floor {
+    background: #cce5ff;
+    border-color: #3399ff;
+}
+
+.active-ceiling {
+    background: #b3ffcc;
+    border-color: #33cc66;
+}
