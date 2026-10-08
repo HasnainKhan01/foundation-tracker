@@ -2,10 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const entriesRouter = require('./routes/entries');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use('/api/entries', entriesRouter);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
