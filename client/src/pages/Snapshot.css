@@ -1,0 +1,29 @@
+.grid {
+  margin-top: 16px;
+}
+
+.grid-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.grid-label {
+  width: 90px;
+}
+
+.cell {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  background: #eee;
+}
+
+.cell.floor {
+  background: #99ccff;
+}
+
+.cell.ceiling {
+  background: #66cc99;
+}
