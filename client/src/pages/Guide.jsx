@@ -1,1 +1,49 @@
-export default function Guide() { return <h1>Guide page</h1>; }
+import { useState } from 'react';
+
+function Guide() {
+  const [password, setPassword] = useState('');
+  const [content, setContent] = useState(null);
+  const [error, setError] = useState('');
+
+  function handleUnlock() {
+    fetch('http://localhost:5000/api/guide/unlock', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setContent(data.content);
+          setError('');
+        } else {
+          setError('Incorrect password');
+        }
+      })
+      .catch((err) => console.error('Unlock failed:', err));
+  }
+
+  if (content) {
+    return (
+      <div>
+        <pre>{content}</pre>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <h1>Foundation Guide</h1>
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Enter password"
+      />
+      <button onClick={handleUnlock}>Unlock</button>
+      {error && <p>{error}</p>}
+    </div>
+  );
+}
+
+export default Guide;
