@@ -6,7 +6,7 @@ function Guide() {
   const [error, setError] = useState('');
 
   function handleUnlock() {
-    fetch('http://localhost:5000/api/guide/unlock', {
+    fetch(`${import.meta.env.VITE_API_URL}/api/guide/unlock`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password }),

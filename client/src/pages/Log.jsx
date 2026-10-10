@@ -10,7 +10,7 @@ function Log() {
     const [nightlyAnchor, setNightlyAnchor] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/entries/${today}`)
+        fetch(`${import.meta.env.VITE_API_URL}/api/entries/${today}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data) {
@@ -25,7 +25,7 @@ function Log() {
 
     function updateField(field, value, setter) {
         setter(value);
-        fetch(`http://localhost:5000/api/entries/${today}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/api/entries/${today}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ field, value }),

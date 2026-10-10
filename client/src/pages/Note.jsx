@@ -7,7 +7,7 @@ function Note() {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/entries/${today}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/entries/${today}`)
       .then((res) => res.json())
       .then((data) => {
         if (data) {
@@ -18,7 +18,7 @@ function Note() {
   }, []);
 
   function handleSave() {
-    fetch(`http://localhost:5000/api/entries/${today}/note`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/entries/${today}/note`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ note }),

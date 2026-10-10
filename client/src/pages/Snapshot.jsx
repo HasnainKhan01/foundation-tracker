@@ -27,8 +27,7 @@ function Snapshot() {
   useEffect(() => {
     const start = formatDate(weekStart);
     const end = days[6];
-
-    fetch(`http://localhost:5000/api/entries?start=${start}&end=${end}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/entries?start=${start}&end=${end}`)
       .then((res) => res.json())
       .then((data) => {
         const entriesMap = {};
