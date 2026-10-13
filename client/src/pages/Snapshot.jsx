@@ -57,42 +57,54 @@ function Snapshot() {
     return entry[field];
   }
 
-  return (
-    <div>
-      <button onClick={prevWeek}>Previous</button>
-      <span> {formatDate(weekStart)} – {days[6]} </span>
-      <button onClick={nextWeek}>Next</button>
+  const dayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-      <div className="grid">
-        <div className="grid-row">
-          <span className="grid-label">Gym</span>
+  return (
+      <div>
+        <div className="page-header">
+          <h1>Snapshot</h1>
+          <p className="subline">Your week at a glance</p>
+        </div>
+
+        <div className="week-nav">
+          <button onClick={prevWeek}>Previous</button>
+          <span className="week-label">{formatDate(weekStart)} – {days[6]}</span>
+          <button onClick={nextWeek}>Next</button>
+        </div>
+
+        <div className="snap-grid">
+          <span></span>
+          {dayLabels.map((d) => <span key={d} className="day-header">{d}</span>)}
+
+          <span className="label">Gym</span>
           {days.map((date) => (
             <div key={date} className={`cell ${getValue(date, 'gym')}`} />
           ))}
-        </div>
 
-        <div className="grid-row">
-          <span className="grid-label">Job Apps</span>
+          <span className="label">Job Apps</span>
           {days.map((date) => (
             <div key={date} className={`cell ${getValue(date, 'jobApplications')}`} />
           ))}
-        </div>
 
-        <div className="grid-row">
-          <span className="grid-label">Skincare</span>
+          <span className="label">Skincare</span>
           {days.map((date) => (
             <div key={date} className={`cell ${getValue(date, 'skincare')}`} />
           ))}
-        </div>
 
-        <div className="grid-row">
-          <span className="grid-label">Anchor</span>
+          <span className="label anchor-row">Nightly Anchor</span>
           {days.map((date) => (
-            <span key={date}>{getValue(date, 'nightlyAnchor') ? '✓' : '✗'}</span>
+            <span key={date} className="anchor-row anchor-mark">
+              {getValue(date, 'nightlyAnchor') ? '✓' : '✗'}
+            </span>
           ))}
         </div>
+
+        <div className="legend">
+          <span><span className="legend-swatch" style={{ background: 'var(--ceiling)' }}></span>Ceiling</span>
+          <span><span className="legend-swatch" style={{ background: 'var(--floor)' }}></span>Floor</span>
+          <span><span className="legend-swatch" style={{ border: '1px solid var(--border)' }}></span>None</span>
+        </div>
       </div>
-    </div>
   );
 }
 

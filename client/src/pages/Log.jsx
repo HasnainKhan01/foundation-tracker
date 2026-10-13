@@ -34,63 +34,69 @@ function Log() {
 
     return (
         <div>
-            <h1>{today}</h1>
+            <div className="page-header">
+            <h1>Log</h1>
+            <p className="subline">{today}</p>
+            </div>
 
-            <div className="row">
+            <div className="field-row">
             <span className="label">Gym</span>
-            <button
+            <div className="button-pair">
+                <button
                 className={gym === 'floor' ? 'active-floor' : ''}
-                onClick={() => updateField('gym', 'floor', setGym)}
-            >
+                onClick={() => updateField('gym', gym === 'floor' ? 'none' : 'floor', setGym)}
+                >
                 Floor
-            </button>
-            <button
+                </button>
+                <button
                 className={gym === 'ceiling' ? 'active-ceiling' : ''}
-                onClick={() => updateField('gym', 'ceiling', setGym)}
-            >
+                onClick={() => updateField('gym', gym === 'ceiling' ? 'none' : 'ceiling', setGym)}
+                >
                 Ceiling
-            </button>
-            <button onClick={() => updateField('gym', 'none', setGym)}>Clear</button>
+                </button>
+            </div>
             </div>
 
-            <div className="row">
+            <div className="field-row">
             <span className="label">Job Applications</span>
-            <button
+            <div className="button-pair">
+                <button
                 className={jobApplications === 'floor' ? 'active-floor' : ''}
-                onClick={() => updateField('jobApplications', 'floor', setJobApplications)}
-            >
+                onClick={() => updateField('jobApplications', jobApplications === 'floor' ? 'none' : 'floor', setJobApplications)}
+                >
                 Floor
-            </button>
-            <button
+                </button>
+                <button
                 className={jobApplications === 'ceiling' ? 'active-ceiling' : ''}
-                onClick={() => updateField('jobApplications', 'ceiling', setJobApplications)}
-            >
+                onClick={() => updateField('jobApplications', jobApplications === 'ceiling' ? 'none' : 'ceiling', setJobApplications)}
+                >
                 Ceiling
-            </button>
-            <button onClick={() => updateField('jobApplications', 'none', setJobApplications)}>Clear</button>
+                </button>
+            </div>
             </div>
 
-            <div className="row">
+            <div className="field-row">
             <span className="label">Skincare</span>
-            <button
+            <div className="button-pair">
+                <button
                 className={skincare === 'floor' ? 'active-floor' : ''}
-                onClick={() => updateField('skincare', 'floor', setSkincare)}
-            >
+                onClick={() => updateField('skincare', skincare === 'floor' ? 'none' : 'floor', setSkincare)}
+                >
                 Floor
-            </button>
-            <button
+                </button>
+                <button
                 className={skincare === 'ceiling' ? 'active-ceiling' : ''}
-                onClick={() => updateField('skincare', 'ceiling', setSkincare)}
-            >
+                onClick={() => updateField('skincare', skincare === 'ceiling' ? 'none' : 'ceiling', setSkincare)}
+                >
                 Ceiling
-            </button>
-            <button onClick={() => updateField('skincare', 'none', setSkincare)}>Clear</button>
+                </button>
+            </div>
             </div>
 
-            <div className="row">
+            <div className="field-row last-row">
             <span className="label">Nightly Anchor</span>
             <button
-                className={nightlyAnchor ? 'active-ceiling' : ''}
+                className={nightlyAnchor ? 'active-ceiling full-width' : 'full-width'}
                 onClick={() => updateField('nightlyAnchor', !nightlyAnchor, setNightlyAnchor)}
             >
                 {nightlyAnchor ? 'Done' : 'Mark Done'}

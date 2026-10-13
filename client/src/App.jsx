@@ -4,24 +4,27 @@ import Log from './pages/Log';
 import Note from './pages/Note';
 import Snapshot from './pages/Snapshot';
 import Guide from './pages/Guide';
+import './App.css';
 
 function App() {
   return (
     <BrowserRouter>
-      <nav>
+      <nav className="nav">
         <Link to="/">Intro</Link>
         <Link to="/log">Log</Link>
         <Link to="/note">Note</Link>
         <Link to="/snapshot">Snapshot</Link>
         <Link to="/guide">Guide</Link>
       </nav>
-      <Routes>
-        <Route path="/" element={<Intro />} />
-        <Route path="/log" element={<Log />} />
-        <Route path="/note" element={<Note />} />
-        <Route path="/snapshot" element={<Snapshot />} />
-        <Route path="/guide" element={<Guide />} />
-      </Routes>
+      <main className="page">
+        <Routes>
+          <Route path="/" element={<Intro />} />
+          <Route path="/log" element={<Log />} />
+          <Route path="/note" element={<Note />} />
+          <Route path="/snapshot" element={<Snapshot />} />
+          <Route path="/guide" element={<Guide />} />
+        </Routes>
+      </main>
     </BrowserRouter>
   );
 }

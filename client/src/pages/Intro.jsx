@@ -1,8 +1,8 @@
 function Intro() {
   return (
-    <div>
+    <div className="intro">
       <h1>Shadab Hasnain Khan</h1>
-      <p>Full-Stack Developer · CompTIA Security+ Certified</p>
+      <p className="subtitle">Full-Stack Developer · CompTIA Security+ Certified</p>
 
       <h2>About</h2>
       <p>

@@ -1,29 +1,86 @@
-.grid {
-  margin-top: 16px;
-}
-
-.grid-row {
+.week-nav {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 8px;
+  margin-bottom: 24px;
 }
 
-.grid-label {
-  width: 90px;
+.week-nav button {
+  padding: 7px 16px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.week-label {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 16px;
+}
+
+.snap-grid {
+  display: grid;
+  grid-template-columns: 110px repeat(7, 1fr);
+  align-items: center;
+  row-gap: 10px;
+}
+
+.day-header {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.snap-grid .label {
+  font-size: 14px;
 }
 
 .cell {
-  width: 24px;
-  height: 24px;
-  border-radius: 3px;
-  background: #eee;
+  width: 34px;
+  height: 34px;
+  border-radius: 2px;
+  background: transparent;
+  border: 1px solid var(--border);
+  justify-self: center;
 }
 
 .cell.floor {
-  background: #99ccff;
+  background: var(--floor);
+  border-color: var(--floor);
 }
 
 .cell.ceiling {
-  background: #66cc99;
+  background: var(--ceiling);
+  border-color: var(--ceiling);
+}
+
+.anchor-row {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  margin-top: 4px;
+}
+
+.anchor-mark {
+  text-align: center;
+  color: var(--ceiling);
+}
+
+.legend {
+  display: flex;
+  gap: 20px;
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: middle;
 }

@@ -26,22 +26,31 @@ function Guide() {
   if (content) {
     return (
       <div>
-        <pre>{content}</pre>
+        <div className="page-header">
+          <h1>Guide</h1>
+          <p className="subline">Personal reference</p>
+        </div>
+        <pre className="guide-content">{content}</pre>
       </div>
     );
   }
 
   return (
     <div>
-      <h1>Foundation Guide</h1>
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Enter password"
-      />
-      <button onClick={handleUnlock}>Unlock</button>
-      {error && <p>{error}</p>}
+      <div className="page-header">
+        <h1>Guide</h1>
+        <p className="subline">Personal reference</p>
+      </div>
+      <div className="unlock-row">
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter password"
+        />
+        <button onClick={handleUnlock}>Unlock</button>
+      </div>
+      {error && <p className="error-msg">{error}</p>}
     </div>
   );
 }

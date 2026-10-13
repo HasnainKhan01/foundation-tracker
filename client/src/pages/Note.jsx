@@ -32,7 +32,11 @@ function Note() {
 
   return (
     <div>
-      <h1>{today}</h1>
+      <div className="page-header">
+        <h1>Note</h1>
+        <p className="subline">{today}</p>
+      </div>
+
       <textarea
         value={note}
         onChange={(e) => {
@@ -42,9 +46,11 @@ function Note() {
         rows={6}
         placeholder="What got done today? How'd it feel?"
       />
-      <br />
-      <button onClick={handleSave}>Save</button>
-      {saved && <span> Saved!</span>}
+
+      <div className="save-row">
+        <button onClick={handleSave}>Save</button>
+        {saved && <span className="saved-msg">Saved!</span>}
+      </div>
     </div>
   );
 }
