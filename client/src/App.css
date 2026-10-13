@@ -139,9 +139,38 @@ textarea::placeholder {
 }
 
 .guide-content {
-  font-family: 'Inter', system-ui, sans-serif;
   font-size: 14px;
   line-height: 1.7;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+}
+
+.guide-content h2 {
+  font-size: 18px;
+  margin-top: 28px;
+  margin-bottom: 8px;
+}
+
+.guide-content h3 {
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+
+.guide-content p {
+  margin: 8px 0;
+}
+
+.guide-content ul {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.guide-content strong {
+  color: var(--ink);
+}
+
+.guide-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
 }

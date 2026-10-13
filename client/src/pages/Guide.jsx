@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 function Guide() {
   const [password, setPassword] = useState('');
@@ -30,7 +31,9 @@ function Guide() {
           <h1>Guide</h1>
           <p className="subline">Personal reference</p>
         </div>
-        <pre className="guide-content">{content}</pre>
+        <div className="guide-content">
+          <ReactMarkdown>{content}</ReactMarkdown>
+        </div>
       </div>
     );
   }
