@@ -174,3 +174,23 @@ textarea::placeholder {
   border-top: 1px solid var(--border);
   margin: 24px 0;
 }
+
+.guide-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 13px;
+}
+
+.guide-content th,
+.guide-content td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.guide-content th {
+  background: transparent;
+  color: var(--muted);
+  font-weight: 500;
+}

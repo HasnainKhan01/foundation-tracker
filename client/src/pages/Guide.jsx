@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 function Guide() {
   const [password, setPassword] = useState('');
@@ -32,7 +33,7 @@ function Guide() {
           <p className="subline">Personal reference</p>
         </div>
         <div className="guide-content">
-          <ReactMarkdown>{content}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
         </div>
       </div>
     );
