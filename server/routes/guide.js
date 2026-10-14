@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const guideContent = require('../guideContent');
+const guideContent = process.env.GUIDE_CONTENT;
 
 router.post('/unlock', (req, res) => {
     const { password } = req.body;
