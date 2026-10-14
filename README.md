@@ -8,7 +8,7 @@ A full-stack habit tracker built around a personal floor/ceiling system — the 
 
 ## Why I built this
 
-I kept falling off the habits I cared about like gym, job applications, skincare, winding down at night because most trackers are all or nothing, and one bad day would wreck the streak and I'd just quit. So I built this around a floor/ceiling system instead: a minimum that still counts as a win, and a stretch goal for the days I have more in me. I found a problem I had and built an end to end project that solved that problem and helped me keep my skills stay sharp.
+I kept falling off with the habits I cared about like gym, job applications, skincare, winding down at night because most trackers are all or nothing, and one bad day would wreck the streak and I'd just quit. So I built this around a floor/ceiling system instead: a minimum that still counts as a win, and a stretch goal for the days I have more in me. I found a problem I had and built an end to end project that solved that problem and helped me keep my skills stay sharp.
 
 ## Features
 
