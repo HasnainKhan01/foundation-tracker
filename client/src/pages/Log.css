@@ -37,7 +37,8 @@
   border-color: var(--floor);
 }
 
-.button-pair button.active-ceiling {
+.button-pair button.active-ceiling,
+.full-width.active-ceiling {
   background: var(--ceiling);
   color: var(--bg);
   border-color: var(--ceiling);
