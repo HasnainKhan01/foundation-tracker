@@ -1,6 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+
+// Floating button that appears once you've scrolled down the guide
+function ScrollToTop() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      setShow(window.scrollY > 400);
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  function scrollToTop() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  }
+
+  return (
+    <button
+      className={show ? 'scroll-top show' : 'scroll-top'}
+      onClick={scrollToTop}
+      aria-label="Scroll to top"
+      tabIndex={show ? 0 : -1}
+    >
+      ↑ Top
+    </button>
+  );
+}
 
 function Guide() {
   const [password, setPassword] = useState('');
@@ -35,6 +65,7 @@ function Guide() {
         <div className="guide-content">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
         </div>
+        <ScrollToTop />
       </div>
     );
   }
