@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { toDateString } from '../utils/date';
 import './Snapshot.css';
 
 function getMonday(date) {
@@ -10,7 +11,7 @@ function getMonday(date) {
 }
 
 function formatDate(date) {
-  return date.toISOString().split('T')[0];
+  return toDateString(date);
 }
 
 function Snapshot() {

@@ -43,3 +43,60 @@
   color: var(--bg);
   border-color: var(--ceiling);
 }
+/* Date navigation */
+.date-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.date-nav button {
+  padding: 7px 16px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.date-nav button:disabled {
+  border-color: var(--border);
+  color: var(--muted);
+  cursor: default;
+}
+
+.date-nav .date-input {
+  width: auto;
+  max-width: none;
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  padding: 7px 10px;
+  font-size: 13px;
+}
+
+.date-nav .today-btn {
+  border-color: var(--ceiling);
+  color: var(--ceiling);
+}
+
+/* Dim the rows while a day's entry is loading so a tap can't get overwritten */
+.fields {
+  transition: opacity 120ms;
+}
+
+.fields.is-loading {
+  opacity: 0.45;
+}
+
+.button-pair button:disabled,
+.full-width:disabled {
+  cursor: default;
+}
+
+@media (max-width: 480px) {
+  .date-nav { flex-wrap: wrap; }
+  .date-nav .date-input { order: -1; flex-basis: 100%; }
+  .date-nav button { flex: 1; }
+}

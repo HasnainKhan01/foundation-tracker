@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-
-const today = new Date().toISOString().split('T')[0];
+import { toDateString } from '../utils/date';
 
 function Note() {
+  const today = toDateString();
   const [note, setNote] = useState('');
   const [saved, setSaved] = useState(false);
 
@@ -15,7 +15,7 @@ function Note() {
         }
       })
       .catch((err) => console.error('Failed to load note:', err));
-  }, []);
+  }, [today]);
 
   function handleSave() {
     fetch(`${import.meta.env.VITE_API_URL}/api/entries/${today}/note`, {
