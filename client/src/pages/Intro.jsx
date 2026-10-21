@@ -39,6 +39,7 @@ function Intro() {
       <h2>Links</h2>
       <ul>
         <li><a href="https://github.com/HasnainKhan01/foundation-tracker" target="_blank" rel="noopener noreferrer">GitHub repo</a></li>
+        <li><a href="https://hasnainkhan01.github.io/" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
         <li><a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
         <li><a href="mailto:shadabhasnainkhan@gmail.com">shadabhasnainkhan@gmail.com</a></li>
       </ul>
