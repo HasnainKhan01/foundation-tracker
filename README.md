@@ -16,6 +16,8 @@ I kept falling off with the habits I cared about like gym, job applications, ski
 
 <img width="775" height="520" alt="Screenshot 2026-10-13 at 9 56 43 PM" src="https://github.com/user-attachments/assets/14f99655-cc51-4311-a91e-3ad2d6402426" />
   
+- **Log any past day** — step back a day at a time or pick a date, and each day loads (or starts blank) independently
+- **Cold-start loading screen** — the frontend pings a health endpoint on load and shows a loading state while the free-tier backend wakes up, so the landing page never waits on it
 - **Daily note** — a short reflection field for each day
 - **Weekly snapshot** — a calendar-week grid (Monday–Sunday) showing the last week's pattern at a glance, with navigation to browse past weeks
   
@@ -68,6 +70,5 @@ npm run dev
 
 ## Roadmap
 
-- Ability to log a previous day, not just the current one
 - Dark mode
 - AI-assisted weekly reflections via the Claude API
