@@ -63,7 +63,17 @@ function Guide() {
           <p className="subline">Personal reference</p>
         </div>
         <div className="guide-content">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              // Wrap tables so wide ones scroll sideways on phones instead of breaking the layout
+              table: ({ children }) => (
+                <div className="table-wrap"><table>{children}</table></div>
+              ),
+            }}
+          >
+            {content}
+          </ReactMarkdown>
         </div>
         <ScrollToTop />
       </div>

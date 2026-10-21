@@ -175,6 +175,37 @@ textarea::placeholder {
   margin: 24px 0;
 }
 
+.guide-content h1 {
+  font-size: 22px;
+  margin: 0 0 4px;
+}
+
+.guide-content em {
+  color: var(--muted);
+}
+
+.guide-content pre {
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  margin: 12px 0;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.guide-content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+.table-wrap table {
+  margin: 0;
+}
+
 .guide-content table {
   width: 100%;
   border-collapse: collapse;
