@@ -10,6 +10,12 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/entries', entriesRouter);
 app.use('/api/guide', guideRouter);
+
+// Health check: the frontend pings this to know when the server (and DB) is awake
+app.get('/api/health', (req, res) => {
+    res.json({ ok: true, db: mongoose.connection.readyState === 1 });
+});
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('Connected to MongoDB'))

@@ -4,28 +4,32 @@ import Log from './pages/Log';
 import Note from './pages/Note';
 import Snapshot from './pages/Snapshot';
 import Guide from './pages/Guide';
+import { ServerProvider, WarmupGate } from './components/ServerStatus';
 import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
-      <nav className="nav">
-        <Link to="/">Intro</Link>
-        <Link to="/log">Log</Link>
-        <Link to="/note">Note</Link>
-        <Link to="/snapshot">Snapshot</Link>
-        <Link to="/guide">Guide</Link>
-      </nav>
-      <main className="page">
-        <Routes>
-          <Route path="/" element={<Intro />} />
-          <Route path="/log" element={<Log />} />
-          <Route path="/note" element={<Note />} />
-          <Route path="/snapshot" element={<Snapshot />} />
-          <Route path="/guide" element={<Guide />} />
-        </Routes>
-      </main>
-    </BrowserRouter>
+    <ServerProvider>
+      <BrowserRouter>
+        <nav className="nav">
+          <Link to="/">Intro</Link>
+          <Link to="/log">Log</Link>
+          <Link to="/note">Note</Link>
+          <Link to="/snapshot">Snapshot</Link>
+          <Link to="/guide">Guide</Link>
+        </nav>
+        <main className="page">
+          <Routes>
+            {/* Intro is static, so recruiters never wait on the backend */}
+            <Route path="/" element={<Intro />} />
+            <Route path="/log" element={<WarmupGate><Log /></WarmupGate>} />
+            <Route path="/note" element={<WarmupGate><Note /></WarmupGate>} />
+            <Route path="/snapshot" element={<WarmupGate><Snapshot /></WarmupGate>} />
+            <Route path="/guide" element={<WarmupGate><Guide /></WarmupGate>} />
+          </Routes>
+        </main>
+      </BrowserRouter>
+    </ServerProvider>
   );
 }
 
