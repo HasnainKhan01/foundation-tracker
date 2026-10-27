@@ -6,6 +6,7 @@ import Snapshot from './pages/Snapshot';
 import Guide from './pages/Guide';
 import { ServerProvider, WarmupGate } from './components/ServerStatus';
 import './App.css';
+import Prizes from './pages/Prizes';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Link to="/note">Note</Link>
           <Link to="/snapshot">Snapshot</Link>
           <Link to="/guide">Guide</Link>
+          <Link to="/prizes">Prizes</Link>
         </nav>
         <main className="page">
           <Routes>
@@ -25,6 +27,7 @@ function App() {
             <Route path="/log" element={<WarmupGate><Log /></WarmupGate>} />
             <Route path="/note" element={<WarmupGate><Note /></WarmupGate>} />
             <Route path="/snapshot" element={<WarmupGate><Snapshot /></WarmupGate>} />
+            <Route path="/prizes" element={<WarmupGate><Prizes /></WarmupGate>} />
             <Route path="/guide" element={<WarmupGate><Guide /></WarmupGate>} />
           </Routes>
         </main>
