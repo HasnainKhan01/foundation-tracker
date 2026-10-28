@@ -6,11 +6,13 @@ const entriesRouter = require('./routes/entries');
 const guideRouter = require('./routes/guide');
 const prizesRouter = require('./routes/prizes');
 const progressRouter = require('./routes/progress');
+const claimsRouter = require('./routes/claims');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/api/entries', entriesRouter);
+app.use('/api/claims', claimsRouter);
 app.use('/api/progress', progressRouter);
 app.use('/api/prizes', prizesRouter);
 app.use('/api/guide', guideRouter);

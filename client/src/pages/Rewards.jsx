@@ -17,6 +17,9 @@ const TIER_LABELS = { floor: 'Floor', ceiling: 'Ceiling', perfect: 'Perfect' };
 function PeriodSection({ type, heading }) {
   const [progress, setProgress] = useState(null);
   const [error, setError] = useState('');
+  const [refresh, setRefresh] = useState(0);
+  const [claiming, setClaiming] = useState('');
+  const [claimError, setClaimError] = useState('');
   const periodKey = periodKeyFor(type);
 
   useEffect(() => {
@@ -34,7 +37,27 @@ function PeriodSection({ type, heading }) {
       });
 
     return () => { cancelled = true; };
-  }, [type, periodKey]);
+  }, [type, periodKey, refresh]);
+
+    async function handleClaim(tier) {
+    setClaiming(tier);
+    setClaimError('');
+    try {
+      const res = await fetch(`${API}/api/claims`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ periodType: type, periodKey, tier }),
+      });
+      const data = await res.json();
+      // 409 means it was already claimed (say, on another device); reloading shows the truth
+      if (!res.ok && res.status !== 409) throw new Error(data.error || 'Claim failed');
+      setRefresh((n) => n + 1);
+    } catch (err) {
+      setClaimError(err.message);
+    } finally {
+      setClaiming('');
+    }
+  }
 
   if (error) {
     return (
@@ -83,21 +106,41 @@ function PeriodSection({ type, heading }) {
         ))}
       </div>
 
-      <div className="prize-cards">
-        {tiers.map((t) => (
-          <div key={t.tier} className={t.reached ? 'prize-card earned' : 'prize-card'}>
-            <span className="card-tier">
-              {TIER_LABELS[t.tier]} · {t.threshold} pts
-            </span>
-            <span className="card-title">
-              {t.prize ?? <Link to="/prizes">Set a prize</Link>}
-            </span>
-            <span className="card-status">
-              {t.reached ? 'Earned' : `${t.threshold - points} points to go`}
-            </span>
-          </div>
-        ))}
+        <div className="prize-cards">
+        {tiers.map((t) => {
+          const ready = t.reached && !t.claimed;
+          const cardClass = ['prize-card', ready && 'ready', t.claimed && 'claimed']
+            .filter(Boolean)
+            .join(' ');
+
+          return (
+            <div key={t.tier} className={cardClass}>
+              <span className="card-tier">
+                {TIER_LABELS[t.tier]} · {t.threshold} pts
+              </span>
+              <span className="card-title">
+                {t.prize ?? <Link to="/prizes">Set a prize</Link>}
+              </span>
+
+              {t.claimed && <span className="card-status">Claimed</span>}
+              {ready && t.prize && (
+                <button
+                  className="claim-btn"
+                  disabled={claiming === t.tier}
+                  onClick={() => handleClaim(t.tier)}
+                >
+                  {claiming === t.tier ? 'Claiming…' : 'Claim'}
+                </button>
+              )}
+              {ready && !t.prize && <span className="card-status">Earned</span>}
+              {!t.reached && (
+                <span className="card-status">{t.threshold - points} points to go</span>
+              )}
+            </div>
+          );
+        })}
       </div>
+      {claimError && <p className="error-msg">{claimError}</p>}
     </section>
   );
 }

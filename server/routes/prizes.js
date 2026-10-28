@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Prize = require('../models/Prize');
+const Claim = require('../models/Claim');
 
 const { TIERS, checkPeriod } = require('../lib/periods');
 
@@ -31,6 +32,10 @@ router.put('/', async (req, res) => {
     }
 
     try {
+        // A claimed prize is history; don't let it be rewritten or removed
+        if (await Claim.exists({ periodType, periodKey, tier })) {
+            return res.status(409).json({ error: 'This prize was already claimed and can’t be changed' });
+        }
         // Upsert: update the prize if one exists for this period+tier, otherwise create it
         const prize = await Prize.findOneAndUpdate(
             { periodType, periodKey, tier },
@@ -53,6 +58,10 @@ router.delete('/', async (req, res) => {
     }
 
     try {
+        // A claimed prize is history; don't let it be rewritten or removed
+        if (await Claim.exists({ periodType, periodKey, tier })) {
+            return res.status(409).json({ error: 'This prize was already claimed and can’t be changed' });
+        }
         await Prize.deleteOne({ periodType, periodKey, tier });
         res.json({ success: true });
     } catch (err) {

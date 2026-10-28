@@ -87,7 +87,10 @@ function Prizes() {
         `${API}/api/prizes?periodType=${periodType}&periodKey=${periodKey}&tier=${tier}`,
         { method: 'DELETE' }
       );
-      if (!res.ok) throw new Error('Remove failed');
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Remove failed');
+      }
       setSaved((s) => { const next = { ...s }; delete next[tier]; return next; });
       setDrafts((d) => { const next = { ...d }; delete next[tier]; return next; });
     } catch (err) {

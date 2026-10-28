@@ -77,8 +77,14 @@
   min-width: 0;
 }
 
-.prize-card.earned {
+/* Earned but not yet claimed */
+.prize-card.ready {
   border-color: var(--floor);
+}
+
+/* Already claimed */
+.prize-card.claimed {
+  opacity: 0.6;
 }
 
 .card-tier {
@@ -105,9 +111,21 @@
   color: var(--muted);
 }
 
-.prize-card.earned .card-status {
-  color: var(--ceiling);
-  font-weight: 500;
+.claim-btn {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 6px 16px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.claim-btn:disabled {
+  border-color: var(--border);
+  color: var(--muted);
+  cursor: default;
 }
 
 /* Cards stack on narrow phones so titles have room */
