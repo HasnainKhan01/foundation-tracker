@@ -1,5 +1,9 @@
 // ---- The scoring rules live here, in one place ----
 
+// The first day you tracked. A week, month, or year that began earlier is measured
+// from this date instead, so the first partial period has a fair target.
+// Format: YYYY-MM-DD
+const TRACKING_START = '2026-10-19';
 // Goals that have a floor and a ceiling
 const TIERED_GOALS = ['gym', 'jobApplications', 'skincare'];
 
@@ -31,4 +35,4 @@ function thresholdFor(tier, maxPoints) {
     return Math.ceil((maxPoints * TIER_PERCENT[tier]) / 100);
 }
 
-module.exports = { MAX_PER_DAY, TIER_PERCENT, pointsForEntry, thresholdFor };
+module.exports = { TRACKING_START, MAX_PER_DAY, TIER_PERCENT, pointsForEntry, thresholdFor };

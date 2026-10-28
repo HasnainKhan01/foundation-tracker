@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
         const progress = await getProgress(periodType, periodKey);
         const t = progress.tiers.find((x) => x.tier === tier);
 
+        if (!progress.tracked) return res.status(400).json({ error: 'Tracking had not started in this period' });
         if (t.claimed) return res.status(409).json({ error: 'Already claimed' });
         if (!t.reached) return res.status(400).json({ error: 'Not enough points yet' });
         if (!t.prize) return res.status(400).json({ error: 'Set a prize for this tier first' });

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { periodKeyFor, formatPeriodLabel } from '../utils/date';
+import { periodKeyFor, formatPeriodLabel, formatShortDate } from '../utils/date';
 import './Rewards.css';
 
 const API = import.meta.env.VITE_API_URL;
@@ -88,6 +88,9 @@ function PeriodSection({ type, heading }) {
     <section className="reward-section">
       <h2>{heading}</h2>
       <p className="reward-date">{formatPeriodLabel(type, periodKey)}</p>
+      {progress.windowStart !== progress.start && (
+        <p className="reward-note">Counting from {formatShortDate(progress.windowStart)}, when you started tracking</p>
+      )}
       <p className="reward-points">
         <strong>{points}</strong> / {maxPoints} points
       </p>

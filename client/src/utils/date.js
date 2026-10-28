@@ -60,6 +60,11 @@ export function shiftPeriod(type, key, n) {
   return String(Number(key) + n);
 }
 
+// 'YYYY-MM-DD' -> 'Oct 19'
+export function formatShortDate(str) {
+  return parseDateString(str).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
 // Human label: 'Oct 26 – Nov 1', 'October 2026', '2026'
 export function formatPeriodLabel(type, key) {
   if (type === 'week') {

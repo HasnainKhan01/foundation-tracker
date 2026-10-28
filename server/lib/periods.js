@@ -46,6 +46,12 @@ function periodRange(periodType, periodKey) {
     const y = Number(periodKey);
     const leap = (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;
     return { start: `${periodKey}-01-01`, end: `${periodKey}-12-31`, days: leap ? 366 : 365 };
+
+    // Number of days from start to end, counting both. Zero or negative means the range is empty.
+    function daysInclusive(start, end) {
+        const ms = Date.parse(`${end}T00:00:00Z`) - Date.parse(`${start}T00:00:00Z`);
+        return Math.floor(ms / 86400000) + 1;
+    }
 }
 
-module.exports = { PERIOD_TYPES, TIERS, checkPeriod, periodRange };
+module.exports = { PERIOD_TYPES, TIERS, checkPeriod, periodRange, daysInclusive };
