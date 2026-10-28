@@ -195,26 +195,24 @@ function Log() {
 
             <div className={loading ? 'note-row is-loading' : 'note-row'}>
                 <label className="label note-label" htmlFor="day-note">How’d the day go?</label>
-                <input
+                <textarea
                     id="day-note"
-                    type="text"
-                    maxLength={200}
+                    rows={6}
+                    maxLength={1000}
                     value={note}
                     disabled={loading}
-                    placeholder="Optional"
+                    placeholder="What got done today? How'd it feel?"
                     onChange={(e) => {
                         setNote(e.target.value);
                         setNoteStatus('');
                     }}
                     onBlur={saveNote}
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter') e.currentTarget.blur(); // blurring triggers the save
-                    }}
                 />
-                <span className={noteStatus === 'error' ? 'note-status error' : 'note-status'}>
-                    {noteStatus === 'saved' && 'Saved'}
-                    {noteStatus === 'error' && 'Couldn’t save. Try again.'}
-                </span>
+                <div className="save-row">
+                    <button disabled={loading} onClick={saveNote}>Save</button>
+                    {noteStatus === 'saved' && <span className="saved-msg">Saved!</span>}
+                    {noteStatus === 'error' && <span className="note-error">Couldn’t save. Try again.</span>}
+                </div>
             </div>
         </div>
     );
