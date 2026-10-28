@@ -7,6 +7,7 @@ import Guide from './pages/Guide';
 import { ServerProvider, WarmupGate } from './components/ServerStatus';
 import './App.css';
 import Prizes from './pages/Prizes';
+import Rewards from './pages/Rewards';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Link to="/snapshot">Snapshot</Link>
           <Link to="/guide">Guide</Link>
           <Link to="/prizes">Prizes</Link>
+          <Link to="/rewards">Rewards</Link>
         </nav>
         <main className="page">
           <Routes>
@@ -28,6 +30,7 @@ function App() {
             <Route path="/note" element={<WarmupGate><Note /></WarmupGate>} />
             <Route path="/snapshot" element={<WarmupGate><Snapshot /></WarmupGate>} />
             <Route path="/prizes" element={<WarmupGate><Prizes /></WarmupGate>} />
+            <Route path="/rewards" element={<WarmupGate><Rewards /></WarmupGate>} />
             <Route path="/guide" element={<WarmupGate><Guide /></WarmupGate>} />
           </Routes>
         </main>

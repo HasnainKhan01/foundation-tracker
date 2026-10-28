@@ -1,0 +1,140 @@
+.reward-section {
+  margin-bottom: 40px;
+  transition: opacity 120ms;
+}
+
+.reward-section.is-loading {
+  opacity: 0.45;
+  min-height: 190px;
+}
+
+.reward-section h2 {
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.reward-date {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.reward-points {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+
+.reward-points strong {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* The progress bar: a track, a colored fill, and a tick at each tier */
+.bar {
+  position: relative;
+  height: 10px;
+  margin-bottom: 18px;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 300ms ease-out;
+}
+
+.tick {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 2px;
+  background: var(--ink);
+  transform: translateX(-1px);
+}
+
+/* Fill color depends on the highest tier reached (also used by the legend) */
+.fill-none { background: var(--muted); }
+.fill-floor { background: var(--floor); }
+.fill-ceiling { background: var(--ceiling); }
+.fill-perfect { background: var(--ink); }
+
+/* Three prize cards under the bar */
+.prize-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.prize-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  min-width: 0;
+}
+
+.prize-card.earned {
+  border-color: var(--floor);
+}
+
+.card-tier {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.card-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.card-title a {
+  color: var(--muted);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+}
+
+.card-status {
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.prize-card.earned .card-status {
+  color: var(--ceiling);
+  font-weight: 500;
+}
+
+/* Cards stack on narrow phones so titles have room */
+@media (max-width: 520px) {
+  .prize-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  gap: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}

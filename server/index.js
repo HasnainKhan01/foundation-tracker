@@ -5,11 +5,13 @@ const cors = require('cors');
 const entriesRouter = require('./routes/entries');
 const guideRouter = require('./routes/guide');
 const prizesRouter = require('./routes/prizes');
+const progressRouter = require('./routes/progress');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/api/entries', entriesRouter);
+app.use('/api/progress', progressRouter);
 app.use('/api/prizes', prizesRouter);
 app.use('/api/guide', guideRouter);
 
