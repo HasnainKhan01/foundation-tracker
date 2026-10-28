@@ -16,9 +16,10 @@ function App() {
           <Link to="/">Intro</Link>
           <Link to="/log">Log</Link>
           <Link to="/snapshot">Snapshot</Link>
-          <Link to="/guide">Guide</Link>
           <Link to="/prizes">Prizes</Link>
           <Link to="/rewards">Rewards</Link>
+          <Link to="/guide">Guide</Link>
+
         </nav>
         <main className="page">
           <Routes>
