@@ -1,8 +1,17 @@
 .nav {
   display: flex;
-  gap: 28px;
-  padding: 20px 40px;
+  flex-wrap: wrap;            /* safety net: if links don't fit, they wrap instead of spilling */
+  gap: 10px 14px;             /* row gap, column gap */
+  padding: 16px 24px;         /* 24px matches the page's own side padding, so the edges line up */
   border-bottom: 1px solid var(--border);
+}
+
+/* On larger screens, keep the roomier original spacing */
+@media (min-width: 600px) {
+  .nav {
+    gap: 10px 28px;
+    padding: 20px 40px;
+  }
 }
 
 .nav a {
