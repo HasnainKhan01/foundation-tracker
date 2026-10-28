@@ -27,7 +27,10 @@ router.patch('/:date', async (req, res) => {
 
 router.patch('/:date/note', async (req, res) => {
     try {
-        const { note } = req.body;
+        const { note } = req.body ?? {};
+        if (typeof note !== 'string' || note.length > 1000) {
+            return res.status(400).json({ error: 'note must be a string of at most 1000 characters' });
+        }
         const entry = await Entry.findOneAndUpdate(
             { date: req.params.date },
             { note },

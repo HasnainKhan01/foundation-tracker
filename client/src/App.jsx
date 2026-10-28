@@ -1,7 +1,6 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import Intro from './pages/Intro';
 import Log from './pages/Log';
-import Note from './pages/Note';
 import Snapshot from './pages/Snapshot';
 import Guide from './pages/Guide';
 import { ServerProvider, WarmupGate } from './components/ServerStatus';
@@ -16,7 +15,6 @@ function App() {
         <nav className="nav">
           <Link to="/">Intro</Link>
           <Link to="/log">Log</Link>
-          <Link to="/note">Note</Link>
           <Link to="/snapshot">Snapshot</Link>
           <Link to="/guide">Guide</Link>
           <Link to="/prizes">Prizes</Link>
@@ -27,11 +25,12 @@ function App() {
             {/* Intro is static, so recruiters never wait on the backend */}
             <Route path="/" element={<Intro />} />
             <Route path="/log" element={<WarmupGate><Log /></WarmupGate>} />
-            <Route path="/note" element={<WarmupGate><Note /></WarmupGate>} />
             <Route path="/snapshot" element={<WarmupGate><Snapshot /></WarmupGate>} />
             <Route path="/prizes" element={<WarmupGate><Prizes /></WarmupGate>} />
             <Route path="/rewards" element={<WarmupGate><Rewards /></WarmupGate>} />
             <Route path="/guide" element={<WarmupGate><Guide /></WarmupGate>} />
+            {/* Old bookmarks to /note land on the Log page, where the note now lives */}
+            <Route path="/note" element={<Navigate to="/log" replace />} />
           </Routes>
         </main>
       </BrowserRouter>

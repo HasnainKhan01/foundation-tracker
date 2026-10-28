@@ -13,6 +13,10 @@ function Log() {
     const [jobApplications, setJobApplications] = useState('none');
     const [skincare, setSkincare] = useState('none');
     const [nightlyAnchor, setNightlyAnchor] = useState(false);
+    const [note, setNote] = useState('');
+    // What the server has for the note (and for which day), so we skip saves that change nothing
+    const [savedNote, setSavedNote] = useState({ date: null, text: '' });
+    const [noteStatus, setNoteStatus] = useState(''); // '' | 'saved' | 'error'
 
     useEffect(() => {
         let cancelled = false;
@@ -26,6 +30,9 @@ function Log() {
                 setJobApplications(data?.jobApplications ?? 'none');
                 setSkincare(data?.skincare ?? 'none');
                 setNightlyAnchor(data?.nightlyAnchor ?? false);
+                setNote(data?.note ?? '');
+                setSavedNote({ date, text: (data?.note ?? '').trim() });
+                setNoteStatus('');
                 setLoadedDate(date);
             })
             .catch((err) => {
@@ -45,6 +52,28 @@ function Log() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ field, value }),
         }).catch((err) => console.error('Failed to update:', err));
+    }
+
+    // Runs when you leave the field (tap elsewhere, press Enter, change day, switch page)
+    async function saveNote() {
+        const text = note.trim();
+        const saveDate = date;
+        if (savedNote.date === saveDate && savedNote.text === text) return; // nothing changed
+
+        try {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/entries/${saveDate}/note`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ note: text }),
+            });
+            if (!res.ok) throw new Error(`Server returned ${res.status}`);
+            setSavedNote({ date: saveDate, text });
+            setNoteStatus('saved');
+            setTimeout(() => setNoteStatus(''), 2000);
+        } catch (err) {
+            console.error('Failed to save note:', err);
+            setNoteStatus('error');
+        }
     }
 
     function handleDatePick(e) {
@@ -162,6 +191,30 @@ function Log() {
             </button>
             </div>
 
+            </div>
+
+            <div className={loading ? 'note-row is-loading' : 'note-row'}>
+                <label className="label note-label" htmlFor="day-note">How’d the day go?</label>
+                <input
+                    id="day-note"
+                    type="text"
+                    maxLength={200}
+                    value={note}
+                    disabled={loading}
+                    placeholder="Optional"
+                    onChange={(e) => {
+                        setNote(e.target.value);
+                        setNoteStatus('');
+                    }}
+                    onBlur={saveNote}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') e.currentTarget.blur(); // blurring triggers the save
+                    }}
+                />
+                <span className={noteStatus === 'error' ? 'note-status error' : 'note-status'}>
+                    {noteStatus === 'saved' && 'Saved'}
+                    {noteStatus === 'error' && 'Couldn’t save. Try again.'}
+                </span>
             </div>
         </div>
     );

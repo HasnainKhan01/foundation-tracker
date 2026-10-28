@@ -100,3 +100,31 @@
   .date-nav .date-input { order: -1; flex-basis: 100%; }
   .date-nav button { flex: 1; }
 }
+
+/* Optional one-line note under the habit rows */
+.note-row {
+  margin-top: 20px;
+  transition: opacity 120ms;
+}
+
+.note-row.is-loading {
+  opacity: 0.45;
+}
+
+.note-label {
+  display: block;
+  width: auto;
+  margin-bottom: 8px;
+}
+
+.note-status {
+  display: block;
+  min-height: 18px;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--ceiling);
+}
+
+.note-status.error {
+  color: var(--error);
+}
